@@ -2,11 +2,10 @@
 - hosts: all
   become: true
   tasks:
-    - name: Ensure host key is known
-      ansible.builtin.known_hosts:
-        name: "{{ inventory_hostname }}"
-        key: "{{ lookup('pipe', 'ssh-keyscan -t rsa ' + inventory_hostname) }}"
-
+    # - name: Ensure host key is known
+    #   ansible.builtin.known_hosts:
+    #     name: "{{ inventory_hostname }}"
+    #     key: "{{ lookup('pipe', 'ssh-keyscan -t rsa ' + inventory_hostname) }}"
     - name: update apt packages
       apt:
         upgrade: yes
