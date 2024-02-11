@@ -1,0 +1,16 @@
+---
+- name: stop K3S services on the control plan
+  hosts: master
+  become: true
+  tasks:
+    - name: stop K3S service
+      ansible.builtin.service:
+        name: k3s
+        state: stopped
+- name: stop K3S services on the worker nodes
+  hosts: node
+  become: true
+  tasks:
+    - ansible.builtin.service:
+        name: k3s-node
+        state: stopped
