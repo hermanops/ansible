@@ -7,6 +7,6 @@
   tasks:
     - name: Uncordon Kubernetes nodes
       ansible.builtin.shell:
-        cmd: "kubectl uncordon {{ item }}"
+        cmd: "/usr/local/bin/kubectl uncordon {{ item }}"
       loop: "{{ k3s_nodes }}"
       delegate_to: localhost  # Executes on the control node
