@@ -1,0 +1,12 @@
+---
+- name: Uncordon Kubernetes Nodes
+  hosts: localhost  # Assuming you're running this from a control node with kubectl access
+  gather_facts: no
+  vars:
+    k3s_nodes: "{{ groups['k3s_cluster'] }}"
+  tasks:
+    - name: Uncordon Kubernetes nodes
+      ansible.builtin.shell:
+        cmd: "kubectl uncordon {{ item }}"
+      loop: "{{ k3s_nodes }}"
+      delegate_to: localhost  # Executes on the control node
